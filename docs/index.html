@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Blue Plaid Racing | Sim racing, YouTube &amp; iRacing apps</title>
+<meta name="description" content="Blue Plaid Racing (BPR): Rob's sim racing team on iRacing. YouTube races, a Discord community, and BPR's iRacing apps: The Racer's Mind and ThePerfectLap.">
+<meta property="og:title" content="Blue Plaid Racing">
+<meta property="og:description" content="Pretend race cars, alarming mediocrity. YouTube, Discord and iRacing apps.">
+<meta property="og:image" content="assets/og-image.jpg">
+<meta name="theme-color" content="#2a2e58">
+<link rel="icon" href="assets/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+<style>
+  :root{
+    /* Official BPR palette */
+    --deep-blue:#2a2e58; --pale-blue:#5278bb; --yellow-orange:#f7a638; --white:#ffffff;
+    /* derived tints/shades (keep within the palette family) */
+    --ink:#1d2042; --text:#1f2340; --muted:#565c78; --bg:#eef1f8;
+    --navy:var(--deep-blue); --mid:var(--pale-blue); --orange:var(--yellow-orange);
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;font-family:system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;color:var(--text);background:var(--bg);line-height:1.55}
+  a{color:inherit}
+  /* Real BPR plaid tile (2 repeats, 436px, seamless) */
+  .plaid{
+    background-color:var(--pale-blue);
+    background-image:linear-gradient(180deg, rgba(42,46,88,.10), rgba(42,46,88,.35)), url("assets/plaid-tile.png");
+    background-size:auto, 436px 436px;
+  }
+  .plaid-dark{
+    background-color:var(--deep-blue);
+    background-image:linear-gradient(180deg, rgba(29,32,66,.84), rgba(29,32,66,.90)), url("assets/plaid-tile.png");
+    background-size:auto, 436px 436px;
+  }
+  .checker{height:10px;background:
+      repeating-conic-gradient(#111 0 25%, #fff 0 50%) 0 0/10px 10px;}
+  .wrap{max-width:1040px;margin:0 auto;padding:0 20px}
+
+  /* nav */
+  nav{background:var(--white);color:var(--deep-blue);border-bottom:4px solid var(--yellow-orange)}
+  nav .wrap{display:flex;align-items:center;justify-content:space-between;gap:12px;min-height:64px}
+  nav .brand{display:flex;align-items:center;text-decoration:none;padding:6px 0}
+  nav .brand img{height:48px;width:auto;display:block}
+  nav ul{list-style:none;display:flex;gap:22px;margin:0;padding:0;font-size:.95rem;font-weight:700}
+  nav ul a{text-decoration:none;color:var(--deep-blue)}
+  nav ul a:hover{color:var(--pale-blue);text-decoration:underline;text-decoration-color:var(--yellow-orange);text-decoration-thickness:3px;text-underline-offset:5px}
+
+  /* hero */
+  .hero{padding:56px 0 64px;overflow:hidden}
+  .hero .stage{display:grid;grid-template-columns:minmax(0,600px) minmax(0,1fr);gap:20px;align-items:center}
+  .hero .card{background:rgba(255,255,255,.95);border-radius:18px;box-shadow:0 18px 40px rgba(29,32,66,.4);padding:30px 34px;position:relative;z-index:1}
+  .hero .logo{width:280px;max-width:100%;height:auto;display:block;margin:0 0 14px}
+  .hero .btns .btn{padding:9px 14px;font-size:.93rem}
+  .hero .car{margin:0;position:relative}
+  .hero .car::before{content:"";position:absolute;inset:6% -4% 2% -4%;background:radial-gradient(closest-side, rgba(255,255,255,.55), rgba(255,255,255,0));z-index:0}
+  .hero .car img{position:relative;width:118%;max-width:none;margin-left:-6%;height:auto;display:block;filter:drop-shadow(0 22px 18px rgba(15,17,40,.55))}
+  .hero .car figcaption{position:relative;text-align:center;color:#fff;font-size:.85rem;font-weight:600;text-shadow:0 1px 3px rgba(0,0,0,.6);margin-top:4px}
+  .hero h1{margin:0 0 6px;font-size:2.2rem;line-height:1.05;color:var(--navy);font-weight:900;letter-spacing:-.01em}
+  /* the logo already spells the name; keep the h1 for screen readers and search */
+  .hero h1.sr{position:absolute;width:1px;height:1px;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+  .hero h1 em{font-style:normal;color:var(--orange)}
+  .tag{margin:0 0 14px;font-size:1.15rem;color:var(--muted);font-style:italic}
+  .hero p.intro{margin:0 0 22px;font-size:1.05rem}
+  .btns{display:flex;flex-wrap:wrap;gap:10px}
+  .btn{display:inline-flex;align-items:center;gap:8px;padding:10px 16px;white-space:nowrap;border-radius:999px;font-weight:700;text-decoration:none;font-size:.98rem;transition:transform .1s ease, box-shadow .1s ease}
+  .btn:hover{transform:translateY(-1px);box-shadow:0 4px 12px rgba(0,0,0,.18)}
+  .btn-orange{background:var(--orange);color:var(--ink)}
+  .btn-navy{background:var(--navy);color:#fff}
+  .btn-ghost{background:transparent;color:var(--navy);border:2px solid var(--navy)}
+  .btn svg{width:20px;height:20px;flex:none}
+
+  /* sections */
+  section.block{padding:64px 0}
+  section.block h2{font-size:1.9rem;color:var(--navy);margin:0 0 6px;font-weight:900}
+  section.block h2::after{content:"";display:block;width:56px;height:5px;background:var(--orange);border-radius:3px;margin-top:10px}
+  .lede{color:var(--muted);margin:14px 0 28px;max-width:680px;font-size:1.05rem}
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:22px}
+  .panel{background:#fff;border-radius:14px;padding:26px;box-shadow:0 6px 20px rgba(27,30,61,.08);border-top:5px solid var(--navy);display:flex;flex-direction:column}
+  .panel h3{margin:0 0 8px;font-size:1.3rem;color:var(--navy);display:flex;align-items:center;gap:10px}
+  .panel h3 svg{width:28px;height:28px;flex:none}
+  .panel p{margin:0 0 18px}
+  .panel ul{margin:0 0 18px;padding-left:20px}
+  .panel li{margin:3px 0}
+  .panel .btns{margin-top:auto}
+  .yt{border-top-color:#e62117}
+  .dc{border-top-color:#5865f2}
+
+  .apps{color:#fff}
+  .apps h2{color:#fff !important}
+  .apps .lede{color:#dfe5f4}
+  .app{background:rgba(255,255,255,.97);color:var(--text);border-top:5px solid var(--orange)}
+  .badge{display:inline-block;font-size:.75rem;font-weight:800;text-transform:uppercase;letter-spacing:.08em;padding:3px 10px;border-radius:999px;margin-left:auto}
+  .free{background:#d9f2df;color:#1b6b34}
+  .paid{background:#ffe9c7;color:#8a4b00}
+  .apps-grid{align-items:stretch}
+  .app .note{font-size:.92rem;color:var(--muted);margin-top:-8px}
+  .app .btns{margin-top:auto}
+  .btn-disabled{background:#e3e6ef;color:#6b7190;border:2px dashed #b9bed0;cursor:not-allowed}
+  .btn-disabled:hover{transform:none;box-shadow:none}
+  .more{margin-top:14px;border-top:1px solid #e3e6ef;padding-top:12px}
+  .more summary{list-style:none;cursor:pointer;display:inline-flex;align-items:center;gap:8px;padding:7px 14px;border-radius:999px;border:2px solid var(--deep-blue);color:var(--deep-blue);font-weight:700;font-size:.92rem;user-select:none}
+  .more summary::-webkit-details-marker{display:none}
+  .more summary::after{content:"";width:8px;height:8px;border-right:2px solid currentColor;border-bottom:2px solid currentColor;transform:rotate(45deg) translateY(-2px);transition:transform .15s}
+  .more[open] summary::after{transform:rotate(-135deg) translate(-2px,0)}
+  @media (hover:hover){.more summary:hover{background:var(--deep-blue);color:#fff}}
+  .more summary:focus-visible{outline:3px solid var(--yellow-orange);outline-offset:2px}
+  .more .when-open{display:none}
+  .more[open] .when-open{display:inline}
+  .more[open] .when-closed{display:none}
+  .more-body{padding-top:6px;font-size:.93rem}
+  .more-body h4{margin:14px 0 4px;font-size:.78rem;text-transform:uppercase;letter-spacing:.08em;color:var(--pale-blue)}
+  .more-body ul{margin:0;padding-left:18px}
+  .more-body li{margin:3px 0}
+  .more-body ul.soon li{color:var(--muted)}
+  .more-body ul.soon li::marker{content:"\23F3  "}
+  .more-body ul.leadins li{margin:6px 0}
+  .app .hook{font-size:1.15rem;font-weight:800;color:var(--deep-blue);margin:-2px 0 10px;line-height:1.3}
+  .more-body p{margin:6px 0 8px}
+  .more-body .small{font-size:.85rem;color:var(--muted)}
+  .signals{margin:4px 0 8px}
+  .signals dt{font-weight:700;color:var(--deep-blue);margin-top:8px}
+  .signals dt::before{content:"\2192  ";color:var(--yellow-orange)}
+  .signals dd{margin:2px 0 0 18px}
+  .pair{grid-column:1/-1;background:rgba(255,255,255,.97);color:var(--text);border-top:5px solid var(--orange);border-left:6px solid var(--orange)}
+  .pair h3{font-size:1.45rem;color:var(--deep-blue)}
+  .pair h3::before{content:"";width:14px;height:14px;border-radius:3px;background:var(--orange);display:inline-block}
+  .pair p{margin:0;font-size:1.05rem}
+
+  footer{background:var(--ink);color:#c5cbe0;font-size:.9rem;padding:28px 0 34px}
+  footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:14px}
+  footer a{color:#fff}
+  footer .credit{max-width:620px}
+  footer small{color:#8f97b6}
+
+  @media (max-width:760px){
+    nav ul{display:none}
+    nav .brand img{height:42px}
+    .hero{padding:28px 0 32px}
+    .hero .stage{grid-template-columns:1fr;gap:8px}
+    .hero .card{text-align:center;padding:24px 20px}
+    .hero .logo{width:230px;margin:0 auto 12px}
+    .hero .car img{width:100%;margin-left:0}
+    .hero h1{font-size:2rem}
+    .btns{justify-content:center}
+    .grid2{grid-template-columns:1fr}
+    section.block{padding:44px 0}
+    section.block h2{font-size:1.6rem}
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <a class="brand" href="#top" aria-label="Blue Plaid Racing home"><picture><source srcset="assets/logo.webp" type="image/webp"><img src="assets/logo.png" alt="Blue Plaid Racing" width="416" height="233"></picture></a>
+    <ul>
+      <li><a href="#watch">YouTube</a></li>
+      <li><a href="#community">Discord</a></li>
+      <li><a href="#apps">Apps</a></li>
+    </ul>
+  </div>
+</nav>
+
+<header class="hero plaid" id="top">
+  <div class="wrap">
+    <div class="stage">
+    <div class="card">
+      <picture><source srcset="assets/logo.webp" type="image/webp"><img class="logo" src="assets/logo.png" alt="Blue Plaid Racing logo" width="416" height="233"></picture>
+      <div>
+        <h1 class="sr">Blue Plaid <em>Racing</em></h1>
+        <p class="tag">Pretend race cars, driven with alarming mediocrity.</p>
+        <p class="intro">BPR is my fictional sim-racing team on iRacing. League races on YouTube, a small Discord server and a couple of helpful <a href="#apps">apps</a> to help drivers get a little less mediocre.</p>
+        <div class="btns">
+          <a class="btn btn-orange" href="https://www.youtube.com/@BluePlaidRacing" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M23 7.2a3 3 0 0 0-2.1-2.1C19 4.6 12 4.6 12 4.6s-7 0-8.9.5A3 3 0 0 0 1 7.2 31 31 0 0 0 .5 12 31 31 0 0 0 1 16.8a3 3 0 0 0 2.1 2.1c1.9.5 8.9.5 8.9.5s7 0 8.9-.5a3 3 0 0 0 2.1-2.1c.4-1.6.5-4.8.5-4.8s0-3.2-.5-4.8ZM9.8 15.1V8.9L15.6 12l-5.8 3.1Z"/></svg>
+            Watch on YouTube</a>
+          <a class="btn btn-navy" href="https://discord.gg/UWajfEGnvp" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.3 4.4A19.8 19.8 0 0 0 15.4 3l-.6 1.3a18.4 18.4 0 0 0-5.6 0L8.6 3a19.7 19.7 0 0 0-4.9 1.5C.6 9.1-.3 13.7.1 18.2a19.9 19.9 0 0 0 6 3l1.3-2.1c-.7-.3-1.4-.6-2-1l.5-.4a14.2 14.2 0 0 0 12.2 0l.5.4c-.6.4-1.3.7-2 1l1.3 2.1a19.8 19.8 0 0 0 6-3c.5-5.2-.8-9.8-3.6-13.8ZM8 15.5c-1.2 0-2.2-1.1-2.2-2.4S6.8 10.7 8 10.7s2.2 1.1 2.2 2.4-1 2.4-2.2 2.4Zm8 0c-1.2 0-2.2-1.1-2.2-2.4s1-2.4 2.2-2.4 2.2 1.1 2.2 2.4-1 2.4-2.2 2.4Z"/></svg>
+            Join the Discord</a>
+          <a class="btn btn-ghost" href="#apps">See the apps</a>
+        </div>
+      </div>
+    </div>
+    <figure class="car">
+      <picture><source srcset="assets/livery-front.webp" type="image/webp"><img src="assets/livery-front.png" alt="The Blue Plaid Racing Porsche 911 GT3 R in iRacing: deep blue plaid livery with yellow-orange stripes, mirrors and wing endplates" width="728" height="390"></picture>
+      <figcaption>The BPR Porsche 911 GT3 R</figcaption>
+    </figure>
+    </div>
+  </div>
+</header>
+<div class="checker" aria-hidden="true"></div>
+
+<section class="block" id="watch">
+  <div class="wrap">
+    <h2>Watch &amp; hang out</h2>
+    <p class="lede">Races, the occasional how-to, and a place to talk sim racing with people who also spend too much time in a bucket seat bolted to a frame in a spare room.</p>
+    <div class="grid2">
+      <div class="panel yt">
+        <h3><svg viewBox="0 0 24 24" fill="#e62117" aria-hidden="true"><path d="M23 7.2a3 3 0 0 0-2.1-2.1C19 4.6 12 4.6 12 4.6s-7 0-8.9.5A3 3 0 0 0 1 7.2 31 31 0 0 0 .5 12 31 31 0 0 0 1 16.8a3 3 0 0 0 2.1 2.1c1.9.5 8.9.5 8.9.5s7 0 8.9-.5a3 3 0 0 0 2.1-2.1c.4-1.6.5-4.8.5-4.8s0-3.2-.5-4.8ZM9.8 15.1V8.9L15.6 12l-5.8 3.1Z"/></svg>YouTube</h3>
+        <ul>
+          <li>PCA Sim Racing (Porsche Club of America) league races</li>
+          <li>Other league races</li>
+          <li>Open lobby races in whatever car and track strike my fancy</li>
+          <li>How-tos, DIY rig projects and beginner tips</li>
+        </ul>
+        <div class="btns"><a class="btn btn-orange" href="https://www.youtube.com/@BluePlaidRacing" target="_blank" rel="noopener">youtube.com/@BluePlaidRacing</a></div>
+      </div>
+      <div class="panel dc" id="community">
+        <h3><svg viewBox="0 0 24 24" fill="#5865f2" aria-hidden="true"><path d="M20.3 4.4A19.8 19.8 0 0 0 15.4 3l-.6 1.3a18.4 18.4 0 0 0-5.6 0L8.6 3a19.7 19.7 0 0 0-4.9 1.5C.6 9.1-.3 13.7.1 18.2a19.9 19.9 0 0 0 6 3l1.3-2.1c-.7-.3-1.4-.6-2-1l.5-.4a14.2 14.2 0 0 0 12.2 0l.5.4c-.6.4-1.3.7-2 1l1.3 2.1a19.8 19.8 0 0 0 6-3c.5-5.2-.8-9.8-3.6-13.8ZM8 15.5c-1.2 0-2.2-1.1-2.2-2.4S6.8 10.7 8 10.7s2.2 1.1 2.2 2.4-1 2.4-2.2 2.4Zm8 0c-1.2 0-2.2-1.1-2.2-2.4s1-2.4 2.2-2.4 2.2 1.1 2.2 2.4-1 2.4-2.2 2.4Z"/></svg>Discord</h3>
+        <p>The Blue Plaid Racing server: chat about races, setups and rigs, ask questions, and hear about the BPR apps first.</p>
+        <div class="btns"><a class="btn btn-navy" href="https://discord.gg/UWajfEGnvp" target="_blank" rel="noopener">Join the BPR Discord</a></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="block apps plaid-dark" id="apps">
+  <div class="wrap">
+    <h2>BPR iRacing apps</h2>
+    <p class="lede">Tools I built for my own driving and decided to share. Each one works on its own.</p>
+    <div class="grid2 apps-grid">
+      <article class="panel app rm">
+        <h3>The Racer&rsquo;s Mind <span class="badge free">Free</span></h3>
+        <p class="hook">Are your race results consistently below your ability?</p>
+        <p>How often do you fall into the mental trap? You mess up qualifying and end up lower in the grid than you should be. You make a mistake in the race and it snowballs into more mistakes? You get passed and the red mist descends? You focus on trying to catch the guy ahead and make MORE mistakes?</p>
+        <p>When this happens, your mind switches into &ldquo;outcome mode&rdquo;. You&rsquo;re no longer in a flow state, executing - you&rsquo;ve been snapped out and now you&rsquo;re worried about what already happened or what might happen.</p>
+        <p>Have you noticed that in high-pressure races, once your brain switches into &ldquo;outcome&rdquo; mode, your mistakes multiply and your results are too often below your abilities?</p>
+        <p>For me, the answer was YES. All the time. The Racer&rsquo;s Mind was built to help me stay in that flow state and <em>execute</em> and I think it can help you too.</p>
+        <p class="note"><em>Free</em></p>
+        <div class="btns">
+          <a class="btn btn-navy" href="https://github.com/robneville73/the-racers-mind-releases/releases/latest/download/TheRacersMind-Setup.exe" rel="noopener">Download for Windows</a>
+        </div>
+        <details class="more">
+          <summary><span class="when-closed">More details</span><span class="when-open">Fewer details</span></summary>
+          <div class="more-body">
+            <h4>The idea</h4>
+            <p>Your pace is built in practice. Your practice writes your &ldquo;program&rdquo; in your mind for how you drive that combo. Your pace is determined by running your program...every corner. Every lap. Monotonously. You can&rsquo;t &ldquo;will&rdquo; the car to go faster. Fast is a <em>consequence</em> of doing hundreds of little things at precisely the right time in precisely the right way. On race day, your job is to run that program, not to chase positions or lap times.</p>
+            <p>Sports psychology splits sports performance into two mindsets: performing vs. executing. Executing means your attention is on the next brake point, your trail-braking, hitting the apex, keeping your eyes up the road...the stuff you&rsquo;ve already made automatic. You know, the &ldquo;flow state&rdquo;.</p>
+            <p>I call it &ldquo;running the program&rdquo;.</p>
+            <p>Performing, however, means your attention is on the <em>result</em>: running position, lap times, expectations. I call it &ldquo;outcome&rdquo; mode. When you&rsquo;re in outcome mode, your lap times suffer and mistakes pile up fast. And you get a worse result than you were capable of because you&rsquo;re no longer running the program - you&rsquo;re trying to &ldquo;will&rdquo; an outcome to happen.</p>
+            <p>I built The Racer&rsquo;s Mind because my own discipline sometimes falls apart when a race gets tense and really matters to me. It&rsquo;s really hard to catch yourself when you slip into &ldquo;outcome&rdquo; mode in real-time.</p>
+            <p>The Racer&rsquo;s Mind was written to look for clues that you may have slipped into outcome mode and use verbal cues to snap you back into running the program. How does it do this? The Racer&rsquo;s Mind connects to iRacing and heart rate monitoring to detect situations that are likely to pull you out of running the program and gently guide you back on track (pun intended).</p>
+            <h4>What triggers The Racer&rsquo;s Mind to intervene?</h4>
+            <ul class="leadins">
+              <li><strong>You go off or have an incident.</strong> Once the car has settled, it gives you a reset cue so the mistake stays behind you.</li>
+              <li><strong>A car is right behind you.</strong> If a car behind is breathing down your neck and you start driving in your mirror or worrying about losing a position.</li>
+              <li><strong>You&rsquo;re closing on the car ahead.</strong> You&rsquo;re gaining on the car ahead and getting excited about a pass.</li>
+              <li><strong>You&rsquo;re pushing past your practice.</strong> The Racer&rsquo;s Mind learns how you drive during practice to set up a baseline. If you start pushing beyond how you practiced, it&rsquo;ll gently tell you to back off and have patience.</li>
+              <li><strong>Your heart rate stays high (optional).</strong> With a smartwatch and Pulsoid, The Racer&rsquo;s Mind learns how your HR reacts during a race and if it&rsquo;s elevated too high, it&rsquo;ll get you to calm back down.</li>
+              <li><strong>The race start and other special situations.</strong> Helpful reminders at race starts to prevent mistakes and nip the red mist in the bud.</li>
+            </ul>
+            <p>Verbal cues are short and calm, in natural voices, and the racecraft cues go quiet in the closing minutes. Each one can be switched off. And you can record your own voices and cues for each trigger.</p>
+            <h4>Requirements &amp; privacy</h4>
+            <ul class="leadins">
+              <li>Windows and iRacing.</li>
+              <li>Heart-rate cues need a smartwatch and a paid Pulsoid account.</li>
+            </ul>
+            <h4>Coming soon</h4>
+            <ul class="leadins">
+              <li>Sending consistency results back to ThePerfectLap.</li>
+              <li>Reading your ThePerfectLap practice plan aloud during focused practice sessions.</li>
+              <li>Note: The Racer&rsquo;s Mind does <em>not</em> require ThePerfectLap, but used together, The Racer&rsquo;s Mind can verbally keep you on task during your practice sessions, so you don&rsquo;t have to refer back to ThePerfectLap.app&rsquo;s website.</li>
+            </ul>
+          </div>
+        </details>
+      </article>
+      <article class="panel app">
+        <h3>ThePerfectLap <span class="badge paid">Paid</span></h3>
+        <p class="hook">Still trying to find speed by turning more laps?</p>
+        <p>You hop in, hot-lap a hundred times, and hope it clicks. Sometimes you find a tenth. Sometimes you go backwards. And when you do get faster, you&rsquo;re not really sure why...so you can&rsquo;t do it again at the next track. It&rsquo;s more fun to just hot lap, but it wastes time when you&rsquo;re trying to improve.</p>
+        <p>You can&rsquo;t improve what you don&rsquo;t measure. Getting faster is about perfecting hundreds of small details: braking, timing, apexes, track usage. And then doing them precisely, consistently.</p>
+        <p>ThePerfectLap helps you find what&rsquo;s actually costing you time, turn it into a focused practice plan, and keep you on task when you&rsquo;re back in the car.</p>
+        <p class="note"><em>Paid subscription</em></p>
+        <div class="btns">
+          <a class="btn btn-navy" href="https://theperfectlap.app" target="_blank" rel="noopener">Visit theperfectlap.app</a>
+        </div>
+        <details class="more">
+          <summary><span class="when-closed">More details</span><span class="when-open">Fewer details</span></summary>
+          <div class="more-body">
+            <h4>The idea</h4>
+            <p>Hot-lapping is a horribly inefficient way to get faster. You&rsquo;ll improve eventually, but by accident, and you&rsquo;ll never reach your full potential.</p>
+            <p>It&rsquo;s like learning guitar. You get better by doing scales and finger exercises, not by copying one song over and over. Sim racing is the same. Instead of building rote muscle memory for one car and track, you work on repeatable principles and techniques, then apply them to whatever combo you&rsquo;re practicing for.</p>
+            <p>That&rsquo;s deliberate practice:</p>
+            <ol class="leadins">
+              <li><strong>Set a baseline.</strong> Put down some honest, consistent laps.</li>
+              <li><strong>Review your fastest laps.</strong> Use the replay to judge things like track usage, and telemetry to look at braking technique and the timing between your steering and pedals. Use the two together to find clues like the wrong apex, or entering a corner too fast or too slow.</li>
+              <li><strong>Pick what matters most.</strong> Not everything is worth fixing first.</li>
+              <li><strong>Practice it on purpose.</strong> Build focused drills around those techniques and work on them, one at a time.</li>
+              <li><strong>Track progress.</strong> You can see how repeated sessions at the same combo improve after practice, so you know that you were effective.</li>
+            </ol>
+            <h4>How ThePerfectLap helps</h4>
+            <ul class="leadins">
+              <li><strong>Review your laps quickly.</strong> Bring your telemetry and your own observations together, corner by corner, so finding the flaws doesn&rsquo;t take all night.</li>
+              <li><strong>Turn mistakes into a plan.</strong> The things you find become focus items in a practice plan.</li>
+              <li><strong>Stay on task in the car.</strong> Your practice sessions are guided by that plan, so you&rsquo;re working on the right thing instead of just turning laps.</li>
+              <li><strong>See if it&rsquo;s working.</strong> Compare against earlier sessions at the same car and track.</li>
+            </ul>
+            <h4>Requirements</h4>
+            <ul class="leadins">
+              <li>iRacing and a web browser.</li>
+              <li>Optional Windows companion app for hands-free notes while you watch your replays.</li>
+            </ul>
+            <h4>Pricing</h4>
+            <ul class="leadins">
+              <li>$12/month, $32/quarter or $115/year. Cancel anytime.</li>
+              <li>Why I charge: TPL uses cloud servers, cloud storage, voice-to-text services and AI that all cost me money when you use them. I&rsquo;d love to give it away for free, but those things cost, so...</li>
+            </ul>
+            <h4>Better together</h4>
+            <p>ThePerfectLap does not require The Racer&rsquo;s Mind, but used together, The Racer&rsquo;s Mind can verbally keep you on task during your practice sessions, so you don&rsquo;t have to refer back to ThePerfectLap.app&rsquo;s website.</p>
+          </div>
+        </details>
+      </article>
+      <aside class="panel pair">
+        <h3>Better together</h3>
+        <p>Used together, The Racer&rsquo;s Mind can verbally keep you on task during your practice sessions, so you don&rsquo;t have to refer back to ThePerfectLap.app&rsquo;s website. Neither app requires the other.</p>
+      </aside>
+    </div>
+  </div>
+</section>
+<div class="checker" aria-hidden="true"></div>
+
+<footer>
+  <div class="wrap">
+    <div>&copy; <span id="yr">2026</span> Blue Plaid Racing &middot; <a href="https://www.youtube.com/@BluePlaidRacing" target="_blank" rel="noopener">YouTube</a> &middot; <a href="https://discord.gg/UWajfEGnvp" target="_blank" rel="noopener">Discord</a></div>
+    <div class="credit"><small>Corner names and numbering in BPR apps use track data from <a href="https://gitlab.com/mr_belowski/CrewChiefV4" target="_blank" rel="noopener">CrewChief</a>, &copy; Britton IT Ltd, used under the MIT License. BPR is not affiliated with iRacing.com Motorsport Simulations.</small></div>
+  </div>
+</footer>
+
+</body>
+</html>
