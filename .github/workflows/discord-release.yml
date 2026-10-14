@@ -1,0 +1,56 @@
+name: Announce release on Discord
+
+on:
+  release:
+    types: [published]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  announce:
+    if: github.event_name == 'workflow_dispatch' || (!github.event.release.prerelease && !github.event.release.draft)
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get release data
+        env:
+          GH_TOKEN: ${{ github.token }}
+          EVENT_NAME: ${{ github.event_name }}
+        run: |
+          set -euo pipefail
+          if [ "$EVENT_NAME" = "release" ]; then
+            jq '.release' "$GITHUB_EVENT_PATH" > release.json
+          else
+            gh api "repos/${GITHUB_REPOSITORY}/releases/latest" > release.json
+          fi
+          jq '{tag_name, name, html_url}' release.json
+
+      - name: Post to Discord
+        env:
+          WEBHOOK: ${{ secrets.DISCORD_RELEASES_WEBHOOK }}
+        run: |
+          set -euo pipefail
+          if [ -z "${WEBHOOK:-}" ]; then echo "DISCORD_RELEASES_WEBHOOK secret is not set"; exit 1; fi
+          jq -n --slurpfile r release.json '
+            ($r[0]) as $rel
+            | ($rel.body // "") as $b
+            | {
+                username: "BPR Releases",
+                content: "@here The Racer'"'"'s Mind \($rel.name // $rel.tag_name) is out!",
+                allowed_mentions: {parse: ["everyone"]},
+                embeds: [{
+                  title: "The Racer'"'"'s Mind \($rel.name // $rel.tag_name) is out!",
+                  url: $rel.html_url,
+                  color: 16229944,
+                  description: (if ($b | length) > 3500 then ($b[0:3500] + "…") else $b end),
+                  fields: [{
+                    name: "Download (Windows)",
+                    value: "https://github.com/robneville73/the-racers-mind-releases/releases/latest/download/TheRacersMind-Setup.exe"
+                  }],
+                  footer: {text: "blueplaidracing.com"}
+                }]
+              }' > payload.json
+          code=$(curl -sS -o resp.txt -w '%{http_code}' -H 'Content-Type: application/json' -X POST --data @payload.json "$WEBHOOK")
+          echo "Discord HTTP $code"
+          if [ "$code" -lt 200 ] || [ "$code" -ge 300 ]; then cat resp.txt; exit 1; fi
