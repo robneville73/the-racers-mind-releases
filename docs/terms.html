@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Terms of Service | Blue Plaid Racing</title>
+<meta name="description" content="Terms of Service for Live Streamer, a personal tool by Blue Plaid Racing.">
+<meta property="og:title" content="Blue Plaid Racing">
+<meta property="og:description" content="Pretend race cars, alarming mediocrity. YouTube, Discord and iRacing apps.">
+<meta property="og:image" content="assets/og-image.jpg">
+<meta name="theme-color" content="#2a2e58">
+<link rel="icon" href="assets/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+<style>
+  :root{
+    /* Official BPR palette */
+    --deep-blue:#2a2e58; --pale-blue:#5278bb; --yellow-orange:#f7a638; --white:#ffffff;
+    /* derived tints/shades (keep within the palette family) */
+    --ink:#1d2042; --text:#1f2340; --muted:#565c78; --bg:#eef1f8;
+    --navy:var(--deep-blue); --mid:var(--pale-blue); --orange:var(--yellow-orange);
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;font-family:system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;color:var(--text);background:var(--bg);line-height:1.55}
+  a{color:inherit}
+  /* Real BPR plaid tile (2 repeats, 436px, seamless) */
+  .plaid{
+    background-color:var(--pale-blue);
+    background-image:linear-gradient(180deg, rgba(42,46,88,.10), rgba(42,46,88,.35)), url("assets/plaid-tile.png");
+    background-size:auto, 436px 436px;
+  }
+  .plaid-dark{
+    background-color:var(--deep-blue);
+    background-image:linear-gradient(180deg, rgba(29,32,66,.84), rgba(29,32,66,.90)), url("assets/plaid-tile.png");
+    background-size:auto, 436px 436px;
+  }
+  .checker{height:10px;background:
+      repeating-conic-gradient(#111 0 25%, #fff 0 50%) 0 0/10px 10px;}
+  .wrap{max-width:1040px;margin:0 auto;padding:0 20px}
+
+  /* nav */
+  nav{background:var(--white);color:var(--deep-blue);border-bottom:4px solid var(--yellow-orange)}
+  nav .wrap{display:flex;align-items:center;justify-content:space-between;gap:12px;min-height:64px}
+  nav .brand{display:flex;align-items:center;text-decoration:none;padding:6px 0}
+  nav .brand img{height:48px;width:auto;display:block}
+  nav ul{list-style:none;display:flex;gap:22px;margin:0;padding:0;font-size:.95rem;font-weight:700}
+  nav ul a{text-decoration:none;color:var(--deep-blue)}
+  nav ul a:hover{color:var(--pale-blue);text-decoration:underline;text-decoration-color:var(--yellow-orange);text-decoration-thickness:3px;text-underline-offset:5px}
+
+  /* hero */
+  .hero{padding:56px 0 64px;overflow:hidden}
+  .hero .stage{display:grid;grid-template-columns:minmax(0,600px) minmax(0,1fr);gap:20px;align-items:center}
+  .hero .card{background:rgba(255,255,255,.95);border-radius:18px;box-shadow:0 18px 40px rgba(29,32,66,.4);padding:30px 34px;position:relative;z-index:1}
+  .hero .logo{width:280px;max-width:100%;height:auto;display:block;margin:0 0 14px}
+  .hero .btns .btn{padding:9px 14px;font-size:.93rem}
+  .hero .car{margin:0;position:relative}
+  .hero .car::before{content:"";position:absolute;inset:6% -4% 2% -4%;background:radial-gradient(closest-side, rgba(255,255,255,.55), rgba(255,255,255,0));z-index:0}
+  .hero .car img{position:relative;width:118%;max-width:none;margin-left:-6%;height:auto;display:block;filter:drop-shadow(0 22px 18px rgba(15,17,40,.55))}
+  .hero .car figcaption{position:relative;text-align:center;color:#fff;font-size:.85rem;font-weight:600;text-shadow:0 1px 3px rgba(0,0,0,.6);margin-top:4px}
+  .hero h1{margin:0 0 6px;font-size:2.2rem;line-height:1.05;color:var(--navy);font-weight:900;letter-spacing:-.01em}
+  /* the logo already spells the name; keep the h1 for screen readers and search */
+  .hero h1.sr{position:absolute;width:1px;height:1px;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+  .hero h1 em{font-style:normal;color:var(--orange)}
+  .tag{margin:0 0 14px;font-size:1.15rem;color:var(--muted);font-style:italic}
+  .hero p.intro{margin:0 0 22px;font-size:1.05rem}
+  .btns{display:flex;flex-wrap:wrap;gap:10px}
+  .btn{display:inline-flex;align-items:center;gap:8px;padding:10px 16px;white-space:nowrap;border-radius:999px;font-weight:700;text-decoration:none;font-size:.98rem;transition:transform .1s ease, box-shadow .1s ease}
+  .btn:hover{transform:translateY(-1px);box-shadow:0 4px 12px rgba(0,0,0,.18)}
+  .btn-orange{background:var(--orange);color:var(--ink)}
+  .btn-navy{background:var(--navy);color:#fff}
+  .btn-ghost{background:transparent;color:var(--navy);border:2px solid var(--navy)}
+  .btn svg{width:20px;height:20px;flex:none}
+
+  /* sections */
+  section.block{padding:64px 0}
+  section.block h2{font-size:1.9rem;color:var(--navy);margin:0 0 6px;font-weight:900}
+  section.block h2::after{content:"";display:block;width:56px;height:5px;background:var(--orange);border-radius:3px;margin-top:10px}
+  .lede{color:var(--muted);margin:14px 0 28px;max-width:680px;font-size:1.05rem}
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:22px}
+  .panel{background:#fff;border-radius:14px;padding:26px;box-shadow:0 6px 20px rgba(27,30,61,.08);border-top:5px solid var(--navy);display:flex;flex-direction:column}
+  .panel h3{margin:0 0 8px;font-size:1.3rem;color:var(--navy);display:flex;align-items:center;gap:10px}
+  .panel h3 svg{width:28px;height:28px;flex:none}
+  .panel p{margin:0 0 18px}
+  .panel ul{margin:0 0 18px;padding-left:20px}
+  .panel li{margin:3px 0}
+  .panel .btns{margin-top:auto}
+  .yt{border-top-color:#e62117}
+  .dc{border-top-color:#5865f2}
+
+  .apps{color:#fff}
+  .apps h2{color:#fff !important}
+  .apps .lede{color:#dfe5f4}
+  .app{background:rgba(255,255,255,.97);color:var(--text);border-top:5px solid var(--orange)}
+  .badge.soon{background:#f7a638;color:#2a2e58;margin-left:8px;vertical-align:middle}
+  .badge{display:inline-block;font-size:.75rem;font-weight:800;text-transform:uppercase;letter-spacing:.08em;padding:3px 10px;border-radius:999px;margin-left:auto}
+  .free{background:#d9f2df;color:#1b6b34}
+  .paid{background:#ffe9c7;color:#8a4b00}
+  .apps-grid{align-items:stretch}
+  .app .note{font-size:.92rem;color:var(--muted);margin-top:-8px}
+  .app .btns{margin-top:auto}
+  .btn-disabled{background:#e3e6ef;color:#6b7190;border:2px dashed #b9bed0;cursor:not-allowed}
+  .btn-disabled:hover{transform:none;box-shadow:none}
+  .more{margin-top:14px;border-top:1px solid #e3e6ef;padding-top:12px}
+  .more summary{list-style:none;cursor:pointer;display:inline-flex;align-items:center;gap:8px;padding:7px 14px;border-radius:999px;border:2px solid var(--deep-blue);color:var(--deep-blue);font-weight:700;font-size:.92rem;user-select:none}
+  .more summary::-webkit-details-marker{display:none}
+  .more summary::after{content:"";width:8px;height:8px;border-right:2px solid currentColor;border-bottom:2px solid currentColor;transform:rotate(45deg) translateY(-2px);transition:transform .15s}
+  .more[open] summary::after{transform:rotate(-135deg) translate(-2px,0)}
+  @media (hover:hover){.more summary:hover{background:var(--deep-blue);color:#fff}}
+  .more summary:focus-visible{outline:3px solid var(--yellow-orange);outline-offset:2px}
+  .more .when-open{display:none}
+  .more[open] .when-open{display:inline}
+  .more[open] .when-closed{display:none}
+  .more-body{padding-top:6px;font-size:.93rem}
+  .more-body h4{margin:14px 0 4px;font-size:.78rem;text-transform:uppercase;letter-spacing:.08em;color:var(--pale-blue)}
+  .more-body ul{margin:0;padding-left:18px}
+  .more-body li{margin:3px 0}
+  .more-body ul.soon li{color:var(--muted)}
+  .more-body ul.soon li::marker{content:"\23F3  "}
+  .more-body ul.leadins li{margin:6px 0}
+  .app .hook{font-size:1.15rem;font-weight:800;color:var(--deep-blue);margin:-2px 0 10px;line-height:1.3}
+  .more-body p{margin:6px 0 8px}
+  .more-body .small{font-size:.85rem;color:var(--muted)}
+  .signals{margin:4px 0 8px}
+  .signals dt{font-weight:700;color:var(--deep-blue);margin-top:8px}
+  .signals dt::before{content:"\2192  ";color:var(--yellow-orange)}
+  .signals dd{margin:2px 0 0 18px}
+  .pair{grid-column:1/-1;background:rgba(255,255,255,.97);color:var(--text);border-top:5px solid var(--orange);border-left:6px solid var(--orange)}
+  .pair h3{font-size:1.45rem;color:var(--deep-blue)}
+  .pair h3::before{content:"";width:14px;height:14px;border-radius:3px;background:var(--orange);display:inline-block}
+  .pair p{margin:0;font-size:1.05rem}
+
+  footer{background:var(--ink);color:#c5cbe0;font-size:.9rem;padding:28px 0 34px}
+  footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:14px}
+  footer a{color:#fff}
+  footer .credit{max-width:620px}
+  footer small{color:#8f97b6}
+
+  @media (max-width:760px){
+    nav ul{display:none}
+    nav .brand img{height:42px}
+    .hero{padding:28px 0 32px}
+    .hero .stage{grid-template-columns:1fr;gap:8px}
+    .hero .card{text-align:center;padding:24px 20px}
+    .hero .logo{width:230px;margin:0 auto 12px}
+    .hero .car img{width:100%;margin-left:0}
+    .hero h1{font-size:2rem}
+    .btns{justify-content:center}
+    .grid2{grid-template-columns:1fr}
+    section.block{padding:44px 0}
+    section.block h2{font-size:1.6rem}
+  }
+  .doc{background:var(--white);max-width:760px;margin:36px auto;padding:30px 34px;border-radius:12px;color:var(--text);line-height:1.65;box-shadow:0 2px 10px rgba(29,32,66,.08)}
+  .doc h1{color:var(--deep-blue);margin-top:0}
+  .doc h2{color:var(--deep-blue);font-size:1.15rem;margin:1.4em 0 .3em}
+  .doc a{color:var(--pale-blue)}
+  .doc .back{display:inline-block;margin-top:18px;font-weight:600}
+</style>
+</head>
+<body>
+<nav>
+  <div class="wrap">
+    <a class="brand" href="index.html" aria-label="Blue Plaid Racing home"><picture><source srcset="assets/logo.webp" type="image/webp"><img src="assets/logo.png" alt="Blue Plaid Racing" width="416" height="233"></picture></a>
+    <ul>
+      <li><a href="index.html">Home</a></li>
+    </ul>
+  </div>
+</nav>
+<main class="wrap"><article class="doc">
+<h1>Terms of Service</h1>
+<p><strong>Effective date:</strong> October 21, 2026</p>
+<h2>Personal use</h2>
+<p>Live Streamer is a personal tool by Blue Plaid Racing (Robert Neville), used only by Robert to schedule live broadcasts and upload thumbnails on his own YouTube channel. It is not offered as a service to others.</p>
+<h2>YouTube</h2>
+<p>Use of Live Streamer is subject to the <a href="https://www.youtube.com/t/terms">YouTube Terms of Service</a> and the <a href="https://policies.google.com/privacy">Google Privacy Policy</a>.</p>
+<h2>No warranty</h2>
+<p>Live Streamer is provided "as is", without warranty of any kind.</p>
+<h2>Contact</h2>
+<p><a href="mailto:arborealantelope@gmail.com">arborealantelope@gmail.com</a></p>
+<a class="back" href="index.html">&larr; Back to Blue Plaid Racing</a>
+</article></main>
+
+<footer>
+  <div class="wrap">
+    <div>&copy; <span id="yr">2026</span> Blue Plaid Racing &middot; <a href="https://www.youtube.com/@BluePlaidRacing" target="_blank" rel="noopener">YouTube</a> &middot; <a href="https://discord.gg/UWajfEGnvp" target="_blank" rel="noopener">Discord</a> &middot; <a href="privacy.html">Privacy</a> &middot; <a href="terms.html">Terms</a></div>
+    <div class="credit"><small>Corner names and numbering in BPR apps use track data from <a href="https://gitlab.com/mr_belowski/CrewChiefV4" target="_blank" rel="noopener">CrewChief</a>, &copy; Britton IT Ltd, used under the MIT License. BPR is not affiliated with iRacing.com Motorsport Simulations.</small></div>
+  </div>
+</footer>
+
+</body>
+</html>
